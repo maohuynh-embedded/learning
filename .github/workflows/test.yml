@@ -1,4 +1,4 @@
-name: Rust - Variables
+name: Rust - Test
 
 on:
   push:
@@ -10,13 +10,14 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_variables:
+  test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Build and test in variables directory
+    - name: Test in hello and variables directories
       run: |
-        cd variables
-        cargo build --verbose
+        cd hello
+        cargo test --verbose
+        cd ../variables
         cargo test --verbose

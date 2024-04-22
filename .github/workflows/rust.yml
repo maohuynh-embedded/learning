@@ -9,11 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: [build_hello, build_variables]
+    needs: [hello, variables, test]
     strategy:
       matrix:
         include:
-          - name: Hello
+          - name: hello
             job: build_hello
-          - name: Variables
+          - name: variables
             job: build_variables
+          - name: test
+            job: test
+
+  no_dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: No dependencies step
+        run: echo "This job has no dependencies"
